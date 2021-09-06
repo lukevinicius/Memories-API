@@ -7,6 +7,7 @@ import {
   deletePost,
 } from "../service/post.service";
 
+// Criação de Post
 export async function createPostHandler(req: Request, res: Response) {
   const userId = get(req, "user._id");
   const body = req.body;
@@ -16,6 +17,7 @@ export async function createPostHandler(req: Request, res: Response) {
   return res.send(post);
 }
 
+// Edição de Post
 export async function updatePostHandler(req: Request, res: Response) {
   const userId = get(req, "user._id");
   const postId = get(req, "params.postId");
@@ -35,6 +37,7 @@ export async function updatePostHandler(req: Request, res: Response) {
 
   return res.send(updatedPost);
 }
+
 export async function getPostHandler(req: Request, res: Response) {
   const postId = get(req, "params.postId");
   const post = await findPost({ postId });
