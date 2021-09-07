@@ -42,7 +42,6 @@
     "@types/yup": "^0.29.11",
     "babel-plugin-resolver": "^1.1.0",
     "babel-plugin-transform-typescript-metadata": "^0.3.2",
-    "ts-node": "^9.1.1",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.2.4"
   }
