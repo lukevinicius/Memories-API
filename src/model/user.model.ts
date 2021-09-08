@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import config from "config";
+import config from "../config/index";
 
 export interface UserDocument extends mongoose.Document {
   email: string;
@@ -27,10 +27,7 @@ UserSchema.pre("save", async function (next: mongoose.HookNextFunction) {
   // only hash the password if it has been modified (or is new)
   if (!user.isModified("password")) return next();
 
-  // Random additional data
-  const salt = await bcrypt.genSalt(config.get("saltWorkFactor"));
-
-  const hash = await bcrypt.hashSync(user.password, salt);
+  const hash = await bcrypt.hashSync(user.password, config.saltWorkFactor);
 
   // Replace the password with the hash
   user.password = hash;

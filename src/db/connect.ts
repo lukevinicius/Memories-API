@@ -1,12 +1,10 @@
 import mongoose from "mongoose";
-import config from "config";
+import config from "../config/index";
 import log from "../logger";
 
 function connect() {
-  const dbUri = config.get("dbUri") as string;
-
   return mongoose
-    .connect(dbUri, {
+    .connect(config.dbUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
