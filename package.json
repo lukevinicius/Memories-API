@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "babel src --extensions \".js .ts\" --out-dir dist --copy-files",
+    "build": "tsc",
     "dev:server": "ts-node-dev --transpile-only --ignore-watch node_modules src/app.ts"
   },
   "dependencies": {
