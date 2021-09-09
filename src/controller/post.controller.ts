@@ -42,7 +42,7 @@ export async function updatePostHandler(req: Request, res: Response) {
 
 export async function getPostsUserHandler(req: Request, res: Response) {
   try {
-    const user = req.body.user
+    const user = req.body
     console.log(user)
     if (user === undefined) {
       return res.sendStatus(404);
