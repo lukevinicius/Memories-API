@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.listen(PORT, () => {
-  log.info(`🚀 Server started on port 3000!`);
+  log.info(`🚀 Server started on port ${PORT}`);
 
   connect();
 
