@@ -42,13 +42,15 @@ export async function updatePostHandler(req: Request, res: Response) {
 
 export async function getPostsUserHandler(req: Request, res: Response) {
   try {
-    const user = req.body.user
-    console.log(user)
-    if (user === undefined) {
-      return res.sendStatus(404);
+    const objUser = req.body
+
+    if (!objUser) {
+      return res.status(400).json({ message: 'Campos obrigatórios' })
     }
 
-    const post = await findPostsUser({user});
+    const querySearch = { user: objUser.user }
+
+    const post = await findPostsUser(querySearch);
 
     if (!post) {
       return res.sendStatus(404);
