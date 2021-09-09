@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import { get } from "lodash";
+import log from "../logger";
 import {
   createPost,
   findPost,
+  findPostsUser,
   findAndUpdate,
   deletePost,
 } from "../service/post.service";
@@ -36,6 +38,27 @@ export async function updatePostHandler(req: Request, res: Response) {
   const updatedPost = await findAndUpdate({ postId }, update, { new: true });
 
   return res.send(updatedPost);
+}
+
+export async function getPostsUserHandler(req: Request, res: Response) {
+  try {
+    const user = req.body.user
+    console.log(user)
+    if (user === undefined) {
+      return res.sendStatus(404);
+    }
+
+    const post = await findPostsUser({user});
+
+    if (!post) {
+      return res.sendStatus(404);
+    }
+
+    return res.send(post);
+  } catch (err) {
+    log.error(err)
+    return res.status(409).send(err.message);
+  }
 }
 
 export async function getPostHandler(req: Request, res: Response) {

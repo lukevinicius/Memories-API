@@ -10,6 +10,13 @@ export function createPost(input: DocumentDefinition<PostDocument>) {
   return Post.create(input);
 }
 
+export function findPostsUser(
+  query: FilterQuery<PostDocument>,
+  options: QueryOptions = { lean: true }
+) {
+  return Post.find(query, {}, options);
+}
+
 export function findPost(
   query: FilterQuery<PostDocument>,
   options: QueryOptions = { lean: true }

@@ -3,6 +3,7 @@ import { object, string } from "yup";
 const payload = {
   body: object({
     title: string().required("O Titulo é obrigatorio"),
+    category: string().required("A categoria é obrigatoria"),
     body: string()
       .required("O texto é obrigatorio")
       .min(120, "Seu texto é muito curto - É necessario no mínimo 120 caractéres."),

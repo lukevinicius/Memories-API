@@ -2,6 +2,7 @@ import { Express, Request, Response } from "express";
 import {
   createPostHandler,
   updatePostHandler,
+  getPostsUserHandler,
   getPostHandler,
   deletePostHandler,
 } from "./controller/post.controller";
@@ -55,8 +56,11 @@ export default function (app: Express) {
     updatePostHandler
   );
 
+  // Get posts
+  app.get("/posts", [requiresUser, getPostsUserHandler]);
+
   // Get a post
-  app.get("/api/posts/:postId", getPostHandler);
+  app.get("/api/posts/:postId", [requiresUser, getPostHandler]);
 
   // Delete a post
   app.delete(
