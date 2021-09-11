@@ -57,7 +57,7 @@ export default function (app: Express) {
   );
 
   // Get posts
-  app.get("/posts", [requiresUser, getPostsUserHandler]);
+  app.get("/posts/:userId", [requiresUser, getPostsUserHandler]);
 
   // Get a post
   app.get("/api/posts/:postId", [requiresUser, getPostHandler]);
