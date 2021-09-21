@@ -44,7 +44,7 @@ export default function (app: Express) {
   app.delete("/api/sessions", requiresUser, invalidateUserSessionHandler);
 
   // Send Email
-  app.post("/sendemail", requiresUser, sendEmailHandler);
+  app.post("/emailsend", requiresUser, sendEmailHandler);
 
   // Create a post
   app.post(
