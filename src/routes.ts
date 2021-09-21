@@ -22,12 +22,16 @@ import {
   updatePostSchema,
   deletePostSchema,
 } from "./schema/post.schema";
+import { sendEmailHandler } from "./controller/mail.controller";
 
 export default function (app: Express) {
   app.get("/healthcheck", (req: Request, res: Response) => res.sendStatus(200));
 
   // Register user
   app.post("/user", validateRequest(createUserSchema), createUserHandler);
+
+  // Send Email
+  app.post("/sendemail", sendEmailHandler);
 
   // Login
   app.post(
