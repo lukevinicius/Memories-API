@@ -30,9 +30,6 @@ export default function (app: Express) {
   // Register user
   app.post("/user", validateRequest(createUserSchema), createUserHandler);
 
-  // Send Email
-  app.post("/sendemail", sendEmailHandler);
-
   // Login
   app.post(
     "/sessions",
@@ -45,6 +42,9 @@ export default function (app: Express) {
 
   // Logout
   app.delete("/api/sessions", requiresUser, invalidateUserSessionHandler);
+
+  // Send Email
+  app.post("/sendemail", requiresUser, sendEmailHandler);
 
   // Create a post
   app.post(
